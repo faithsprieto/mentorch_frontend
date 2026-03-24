@@ -1,0 +1,60 @@
+/* RED BUTTON used for REMOVE, LOGOUT */
+.red-button button {
+    padding: 0.5rem 1.25rem;
+    border-radius: 1.25rem;
+    border: none;
+    background: rgba(236, 33, 33, 0.247);
+    backdrop-filter: blur(0.635rem);
+    color: whitesmoke;
+    font-size: 0.75rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.red-button button:hover {
+    background-color: #b92727;
+    font-weight: 700;
+}
+
+/* BLUE BUTTON used for DOWNLOAD, CREATE, POST */
+.blue-button button {
+    padding: 0.5rem 1.25rem;
+    border-radius: 1.25rem;
+    border: none;
+    background: rgba(23, 130, 216, 0.247);
+    backdrop-filter: blur(0.635rem);
+    color: whitesmoke;
+    font-size: 0.75rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.blue-button button:hover {
+    background-color: #4338ca;
+    font-weight: 700;
+}
+
+/*GLASS BUTTONS for HERO BANNERS*/
+.glass-buttons button {
+    padding: 0.5rem 1.25rem;
+    border-radius: 1.25rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.247);
+    backdrop-filter: blur(0.635rem);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.04);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 0.1rem 0 0.1rem;
+    color: whitesmoke;
+}
+
+.glass-buttons button a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.glass-buttons button:hover {
+    font-weight: 700;
+}
+

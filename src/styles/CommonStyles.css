@@ -1,0 +1,213 @@
+/*fonts*/
+@font-face {
+    font-family: "Poppins";
+    src: url("../assets/fonts/Poppins.ttf");
+}
+
+@font-face {
+    font-family: "WorkSans";
+    src: url("../assets/fonts/WorkSans.ttf");
+}
+
+@font-face {
+    font-family: "GeneralSans";
+    src: url("../assets/fonts/GeneralSans.ttf");
+}
+
+/*general page css*/
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    height: 100vh;
+    /*background-image: url("../assets/images/mentorch-bg2.png");*/
+    background-color: brown;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+/*for all the h1-6 and p and spans*/
+
+.hero-subtitle {
+  color: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 0;
+}
+
+/*used for the main page's hero*/
+h1 {
+    font-family: "WorkSans";
+    font-size: 9rem;
+    text-align: center;
+    letter-spacing: -0.5rem;
+    color: white;
+    margin: 0;
+}
+
+/*used for the header of library, archives*/
+h2 {
+    font-family: "Poppins";
+    font-size: 7rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0;
+    text-align: center;
+    letter-spacing: -5px;
+    color: white;
+}
+
+/*used in messages*/
+h3 {
+    font-family: "Poppins";
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
+    margin-left: 2rem;
+    color: white;
+    letter-spacing: -0.1rem;
+}
+
+/*used in messages chat list for contact names*/
+h4 {
+    font-family: "Poppins";
+    font-size: 0.9rem;
+    color: #fff;
+    
+}
+
+/*MAIN PAGE SUBHEADINGS*/
+h5 {
+  font-family: "Poppins";
+    font-size: 4rem;
+    margin-top: 2.5rem;
+    text-align: center;
+    letter-spacing: -5px;
+    color: white;
+}
+
+h6 {
+    margin-bottom: 0;
+    margin-left: 2.5rem;
+    font-family: "GeneralSans";
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+p {
+    margin-bottom: 0.7rem;
+    text-align: center;
+    font-family: "Poppins";
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+/*for the navbar*/
+.navbar {
+  width: 100%;
+  display:grid;
+  grid-template-columns: 12.5rem 1fr 12.5rem;
+  align-items: center;
+  justify-items: center;
+  gap: 0;
+  padding: 0 0.75rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.logo-img {
+  height: 4rem;
+  width: auto;
+  margin-left: 2rem;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2.5rem;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(0.5rem);
+  border-radius: 1.5rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.04);
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.9rem 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.nav-link.active {
+  font-weight: 700;
+}
+
+.navbar-user {
+  cursor: pointer;
+}
+
+.user-icon {
+  font-size: 2.5rem;
+  color: #ffffff;
+}
+
+/*for the footer */
+.footer {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(0.5rem);
+  padding: 0.25rem 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 6.25rem;
+  border-top: 0.0625rem solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-text {
+  font-size: 0.9rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  margin-top: 0.125rem;
+}
+
+.footer-link {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.footer-icon {
+  font-size: 1rem;
+  color: #fff;
+}

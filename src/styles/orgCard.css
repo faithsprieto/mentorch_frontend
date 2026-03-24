@@ -1,0 +1,35 @@
+.org-card {
+  text-align: center;
+  width: 16rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.org-card-image {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.org-card-image:hover {
+  transform: scale(1.05);
+}
+
+.org-card-body {
+  margin-top: 0.9rem;
+}
+
+.org-card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.org-card-description {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}

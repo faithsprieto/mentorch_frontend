@@ -1,0 +1,219 @@
+/* MAIN LAYOUT */
+.messanger {
+    display: grid;
+    grid-template-columns: 17rem 1fr 16rem;
+    height: calc(100vh - 9rem);
+    gap: 0.9375rem;
+    margin: 2rem 4rem 2.5rem 4rem;
+}
+
+/* LEFT SIDE */
+.left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(0.625rem);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+
+    overflow-y: auto;
+}
+
+.left-side h3 {
+    font-size: 2.1875rem;
+    font-family: "GeneralSans";
+    text-align: center;
+    margin: 0 0 0.625rem 0;
+}
+
+/* SEARCH */
+.search {
+    width: 90%;
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+    border: none;
+    margin-bottom: 0.625rem;
+    font-size: 0.75rem;
+}
+
+/* CHAT LIST (inside left-side) */
+.chat-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    cursor: pointer;
+    border-bottom: 0.0625rem solid rgba(255,255,255,0.2);
+}
+
+.chat-card:hover,
+.chat-card.active {
+    background: rgba(255,255,255,0.15);
+}
+
+.chat-avatar {
+    width: 2.8125rem;
+    height: 2.8125rem;
+    border-radius: 50%;
+}
+
+.card-info h4 {
+    font-family: "Poppins";
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.card-info p {
+    font-family: "Poppins";
+    font-size: 0.75rem;
+    margin: 0.125rem 0 0 0;
+    opacity: 0.8;
+}
+
+/* CENTER */
+.center {
+    display: flex;
+    flex-direction: column;
+    
+    min-width: 0; /* 🔥 prevents overflow */
+}
+
+/* your actual chat box */
+.chat-window {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.968);
+    backdrop-filter: blur(0.75rem);
+    border-radius: 1.25rem;
+    height: 100%; /* 🔥 fill column */
+}
+
+/* HEADER */
+.chat-header {
+    padding: 0.9375rem 1.25rem;
+    background-color: rgb(32, 32, 32);
+    border-top-left-radius: 1.25rem;
+    border-top-right-radius: 1.25rem;
+}
+
+.chat-header h3 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: whitesmoke;
+}
+
+/* MESSAGES */
+.messages {
+    flex: 1;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    overflow-y: auto;
+}
+
+/* MESSAGE */
+.message {
+    max-width: 60%;
+    padding: 0.75rem 1rem;
+    border-radius: 1.125rem;
+    font-size: 0.875rem;
+    font-family: "Poppins";
+}
+
+.received {
+    background: rgba(197, 197, 197, 0.557);
+    color: #fff;
+    align-self: flex-start;
+}
+
+.sent {
+    background: #0084ff;
+    color: #fff;
+    align-self: flex-end;
+}
+
+/* INPUT */
+.chat-input {
+    display: flex;
+    gap: 0.625rem;
+    padding: 0.9375rem;
+    border-top: 0.0625rem solid rgba(255,255,255,0.2);
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: 1.25rem;
+    border: none;
+}
+
+.chat-input button {
+    padding: 0.75rem 1.125rem;
+    border-radius: 1.25rem;
+    border: none;
+    background: #0084ff;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* RIGHT SIDE */
+.right-side {
+    display: flex;
+    flex-direction: column;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(0.625rem);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+
+    overflow-y: auto;
+}
+
+.right-side h3 {
+    font-family: "GeneralSans";
+    font-size: 1.75rem;
+    text-align: center;
+    margin: 0 0 1.25rem 0;
+    padding-bottom: 0.9375rem;
+    border-bottom: 0.0625rem solid rgba(255,255,255,0.2);
+}
+
+/* INFO */
+.info-section {
+    padding: 0.625rem;
+    margin-bottom: 0.3125rem;
+}
+
+.info-section p {
+    font-family: "Poppins";
+    font-size: 0.8125rem;
+    margin: 0 0 0.3125rem 0;
+}
+
+.info-section:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+/* TABS */
+.msg-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.msg-tabs .side-btn {
+    background: none;
+    border: none;
+    outline: none;
+
+    color: whitesmoke;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.msg-tabs .side-btn:hover {
+    font-weight: 700;
+}
