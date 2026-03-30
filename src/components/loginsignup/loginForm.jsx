@@ -14,6 +14,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
+  // ✅ HANDLE INPUT
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -21,6 +22,7 @@ export default function Login() {
     });
   };
 
+  // ✅ HANDLE LOGIN
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -33,15 +35,33 @@ export default function Login() {
     try {
       setLoading(true);
 
-      await postRequest("/auth/login", {
+      const res = await postRequest("/auth/login", {
         identifier: form.identifier,
         password: form.password,
       });
 
-      navigate("/adminDashboard");
+      const user = res.user;
+
+      // ✅ SAVE CLEAN VALUES
+      localStorage.setItem("user", user.student_id);
+      localStorage.setItem(
+        "name",
+        `${user.first_name} ${user.last_name}`
+      );
+      localStorage.setItem("usertype", user.user_type);
+
+      // ✅ REDIRECT BASED ON ROLE
+      if (user.user_type === "1") {
+        navigate("/adminDashboard");
+      } else {
+        navigate("/mainPage");
+      }
+
     } catch (err) {
+      console.error(err);
+
       setError(
-        err.response?.data?.message || 
+        err.response?.data?.message ||
         "Invalid credentials. Please try again."
       );
     } finally {
@@ -56,36 +76,40 @@ export default function Login() {
 
         {error && <p className="error">{error}</p>}
 
-      <div className="login-input">
-        <div className="input-group">
-          <label>User ID or Email</label>
-          <input
-            type="text"
-            name="identifier"
-            placeholder="Enter your ID or email"
-            value={form.identifier}
-            onChange={handleChange}
-            className="input"
-          />
+        <div className="login-input">
+          {/* USER INPUT */}
+          <div className="input-group">
+            <label>User ID or Email</label>
+            <input
+              type="text"
+              name="identifier"
+              placeholder="Enter your ID or email"
+              value={form.identifier}
+              onChange={handleChange}
+              className="input"
+            />
+          </div>
+
+          {/* PASSWORD */}
+          <div className="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              value={form.password}
+              onChange={handleChange}
+              className="input"
+            />
+          </div>
         </div>
 
-        <div className="input-group">
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            value={form.password}
-            onChange={handleChange}
-            className="input"
-          />
-        </div>
-      </div>
-
+        {/* SUBMIT */}
         <button type="submit" disabled={loading} className="button">
           {loading ? "Logging in..." : "Login"}
         </button>
 
+        {/* SIGNUP */}
         <div className="signup-redirect">
           <p>
             <span

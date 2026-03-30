@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { postRequest } from "../../utils/api.js";
+
 import "../../styles/CommonButtonStyles.css";
 import "../../styles/CommonStyles.css";
 import "../../styles/pagestyles/adminPage.css";
-
-const API_BASE = "http://localhost/mentorchcd4again4/public/admin";
 
 const AdminCreateAnnouncement = ({ onPostSuccess }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     if (!title || !description) {
@@ -21,31 +22,38 @@ const AdminCreateAnnouncement = ({ onPostSuccess }) => {
     formData.append("title", title);
     formData.append("description", description);
 
-    // ⚠️ TEMP FIX: send string instead of file
+    // TEMP: still sending filename only (like your current backend expects)
     formData.append("image", image ? image.name : "default.jpg");
 
     try {
-      const response = await fetch(`${API_BASE}/createAnnouncements`, {
-        method: "POST",
-        body: formData,
-      });
+      setLoading(true);
 
-      const data = await response.json();
+      const data = await postRequest(
+        "/admin/createAnnouncements",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       if (data.status === "success") {
         alert("Announcement posted!");
         handleCancel();
 
-        // 🔥 notify parent
         if (onPostSuccess) {
           onPostSuccess();
         }
 
-        // 🔥 quick refresh to main page
+        // optional redirect
         window.location.href = "/";
       }
     } catch (error) {
       console.error("Error posting announcement:", error);
+      alert("Failed to post announcement");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -54,6 +62,8 @@ const AdminCreateAnnouncement = ({ onPostSuccess }) => {
     setDescription("");
     setImage(null);
   };
+
+  //add for delete
 
   return (
     <div className="announcement-container">
@@ -81,7 +91,9 @@ const AdminCreateAnnouncement = ({ onPostSuccess }) => {
 
       <div className="button-group">
         <button onClick={handleCancel}>Cancel</button>
-        <button onClick={handleSubmit}>Post</button>
+        <button onClick={handleSubmit} disabled={loading}>
+          {loading ? "Posting..." : "Post"}
+        </button>
       </div>
     </div>
   );

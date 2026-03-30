@@ -14,13 +14,15 @@
 
 /* Glass Form */
 .form {
-  width: 20rem; /* keep your intended width */
+  width: 100%;            /* ✅ FIX: allow responsive width */
+  max-width: 40rem;       /* ✅ FIX: controls size instead of fixed width */
+
   padding: 2rem;
   border-radius: 1.25rem;
 
   display: flex;
   flex-direction: column;
-  align-items: stretch; /* ✅ FIX: stretch children to full width */
+  align-items: stretch;
 
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(12px);
@@ -41,7 +43,7 @@
   font-size: 3rem;
 }
 
-/* Input wrapper (keep but harmless) */
+/* Input wrapper */
 .login-input {
   width: 100%;
   display: flex;
@@ -51,19 +53,19 @@
 
 /* Input Group */
 .input-group {
-  width: 100%; /* ✅ FIX */
+  width: 100%;
   margin-bottom: 1rem;
 
-  display: flex; /* ✅ FIX invalid value */
+  display: flex;
   flex-direction: column;
-  align-items: flex-start; /* keeps labels LEFT */
+  align-items: flex-start;
   color: #ffffff;
 }
 
 /* Input */
 .input {
-  width: 100%; /* ✅ FIX */
-  box-sizing: border-box; /* ✅ IMPORTANT */
+  width: 100%;
+  box-sizing: border-box;
 
   padding: 0.6rem;
   border-radius: 0.75rem;
@@ -88,7 +90,7 @@
 /* Button */
 .button {
   width: 100%;
-  box-sizing: border-box; /* ✅ match inputs */
+  box-sizing: border-box;
 
   padding: 0.75rem;
   border-radius: 0.9rem;
@@ -141,5 +143,7 @@
   opacity: 0.8;
 }
 
-/* REMOVE broken grid behavior (was not working anyway) */
-/* (intentionally left out your grid-column rules since form is not grid) */
+/* FIX MUI GRID inside form */
+.form .MuiGrid-item {
+  width: 100%;
+}

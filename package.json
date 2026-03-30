@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.9",
     "antd": "^6.3.0",
     "axios": "^1.13.5",
     "browser": "^0.2.6",

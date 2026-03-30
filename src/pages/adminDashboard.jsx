@@ -2,7 +2,7 @@ import "../styles/pagestyles/adminPage.css";
 import "../styles/CommonButtonStyles.css";
 import "../styles/CommonStyles.css";
 
-import AdminNav from "../components/adminNav";
+import AdminNav from "../components/admin/adminNav";
 
 export default function AdminPage() {
   const handleNavigation = (section) => {

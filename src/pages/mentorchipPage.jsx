@@ -92,7 +92,7 @@ export default function MentorchipPage() {
           <SearchOutlined className="search-icon" />
 
           <h4 style={{ marginLeft: "180px" }}>
-            Potential Mentors for you:
+            Potential Mentees for you:
           </h4>
 
           <div className="card-sliders">

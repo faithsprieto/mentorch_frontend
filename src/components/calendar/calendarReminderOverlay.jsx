@@ -14,7 +14,7 @@ function CalendarReminderOverlay({ selectedDate, closeOverlay, addReminder }) {
   };
 
   try {
-    await fetch("http://localhost:5000/reminders", {
+    await fetch("http://localhost:5000/reminders", { //change API
       method: "POST",
       headers: {
         "Content-Type": "application/json"

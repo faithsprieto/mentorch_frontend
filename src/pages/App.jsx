@@ -1,11 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 
 import Navbar from "../components/global/navbar";
 import Footer from "../components/global/footer";
 
 import LoginPage from "./loginPage.jsx";
 import SignUpForm from "../components/loginsignup/signupForm.jsx";
-import Login from "../components/loginsignup/loginForm.jsx";
 
 import MainPage from "./mainPage.jsx";
 
@@ -25,45 +24,62 @@ import ForumThreadsPage from "./forumThreadsPage.jsx";
 import ForumViewPostPage from "./forumViewPostPage.jsx";
 import ForumBookmarksPage from "./forumBookmarksPage.jsx";
 
+import CreateKeywordPage from "./adminCreateKeywordPage.jsx";
+
 import UserDashboardPage from "./userDashboardPage.jsx";
+
+/* ✅ Layout WITH Navbar */
+function MainLayout() {
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </>
+  );
+}
 
 function App() {
   return (
     <Router>
-      <Navbar />
-
       <Routes>
+
+        {/* ❌ NO NAVBAR */}
         <Route path="/" element={<LoginPage />} />
         <Route path="/loginPage" element={<LoginPage />} />
         <Route path="/signupPage" element={<SignUpForm />} />
-        <Route path="/mainPage" element={<MainPage />} />
-        <Route path="/messagesPage" element={<MessagesPage />} />
-        <Route path="/calendarPage" element={<CalendarPage />} />
-        
 
-        {/*forum page has its main, bookmarks, threads, notifs, viewpost subpages*/}
-        <Route path="/forumHomePage" element={<ForumHomePage />} />
-        <Route path="bookmarks" element={<ForumBookmarksPage />} />
-        <Route path="threads" element={<ForumThreadsPage />} />
-        <Route path="post/:id" element={<ForumViewPostPage />} />
-        
+        {/* ✅ WITH NAVBAR */}
+        <Route element={<MainLayout />}>
 
-        {/*library page has archival subpage*/}
-        <Route path="/libraryPage" element={<LibraryPage />} />
-        <Route path="/libraryArchivesPage" element={<LibraryArchivesPage />} />
-    
+          <Route path="/mainPage" element={<MainPage />} />
+          <Route path="/messagesPage" element={<MessagesPage />} />
+          <Route path="/calendarPage" element={<CalendarPage />} />
 
-        {/* mentorch has the requests, evaluation form subpages & navigation to messages */}
-        <Route path="/mentorchipPage" element={<MentorchipPage />} />
-        <Route path="/mentorchipRequestsPage" element={<RequestPage />} />
-        <Route path="/mentorchipEvaluPage" element={<EvaluationPage />} />
+          {/* forum */}
+          <Route path="/forumHomePage" element={<ForumHomePage />} />
+          <Route path="/bookmarks" element={<ForumBookmarksPage />} />
+          <Route path="/threads" element={<ForumThreadsPage />} />
+          <Route path="/post/:id" element={<ForumViewPostPage />} />
 
-        {/*USERdashboard*/}
-        <Route path="/userDashboardPage" element={<UserDashboardPage />} />
+          {/* library */}
+          <Route path="/libraryPage" element={<LibraryPage />} />
+          <Route path="/libraryArchivesPage" element={<LibraryArchivesPage />} />
+
+          {/* mentorchip */}
+          <Route path="/mentorchipPage" element={<MentorchipPage />} />
+          <Route path="/mentorchipRequestsPage" element={<RequestPage />} />
+          <Route path="/mentorchipEvaluPage" element={<EvaluationPage />} />
+
+          {/* ADMIN dashboard */}
+          <Route path="/adminCreateKeywordPage" element={<CreateKeywordPage />} />
+
+          {/* USER dashboard */}
+          <Route path="/userDashboardPage" element={<UserDashboardPage />} />
+
+        </Route>
 
       </Routes>
-
-      <Footer />
     </Router>
   );
 }

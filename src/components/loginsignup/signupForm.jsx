@@ -1,30 +1,42 @@
 import React, { useState } from "react";
-import {postRequest} from "../../utils/api.js"
-import axios from "axios";
-import "../../styles/loginsignup.css"
+import { postRequest } from "../../utils/api.js";
+
+// ✅ MUI
+import {
+  Container,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Alert,
+  Paper,
+} from "@mui/material";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    schoolEmail: "",
-    schoolID: "",
-    schoolName: "",
+    first_name: "",
+    last_name: "",
+    school_email: "",
+    student_id: "",
+    school_name: "",
     department: "",
-    course: "",
+    course_program: "",
+    year_level: "",
     password: "",
+    user_type: 2,
   });
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Handle input change
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -32,10 +44,11 @@ const SignUpForm = () => {
     setSuccess("");
 
     try {
-      // Replace with your backend API endpoint
-      const response = await postRequest("/api/register", formData);
-      console.log("User registered:", response.data);
+      await postRequest("/user/register", formData);
+
       setSuccess("Registration successful!");
+
+      // Reset form
       setFormData({
         first_name: "",
         last_name: "",
@@ -46,120 +59,139 @@ const SignUpForm = () => {
         course_program: "",
         year_level: "",
         password: "",
-        user_type: "",
+        user_type: 2,
       });
     } catch (err) {
       console.error(err);
-      setError("Registration failed. Please check your details.");
+      setError(
+        err.response?.data?.message ||
+          "Registration failed. Please check your details."
+      );
     } finally {
       setLoading(false);
     }
   };
 
   return (
-  <div className="container">
-    <h2 className="title">Sign Up</h2>
+    <Container maxWidth="sm">
+      <Paper elevation={3} sx={{ p: 4, mt: 4, borderRadius: 3 }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Sign Up
+        </Typography>
 
-    <form className="form" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="first_name"
-        placeholder="First Name"
-        value={formData.first_name}
-        onChange={handleChange}
-        className="input"
-        required
-      />
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{ display: "grid", gap: 2 }}
+        >
+          <TextField
+            required
+            id="first_name"
+            label="First Name"
+            name="first_name"
+            value={formData.first_name}
+            onChange={handleChange}
+            fullWidth
+          />
 
-      <input
-        type="text"
-        name="last_name"
-        placeholder="Last Name"
-        value={formData.last_name}
-        onChange={handleChange}
-        className="input"
-        required
-      />
+          <TextField
+            required
+            id="last_name"
+            label="Last Name"
+            name="last_name"
+            value={formData.last_name}
+            onChange={handleChange}
+            fullWidth
+          />
 
-      <input
-        type="email"
-        name="school_email"
-        placeholder="School Email"
-        value={formData.schoolEmail}
-        onChange={handleChange}
-        className="input"
-        required
-      />
+          <TextField
+            required
+            id="school_email"
+            label="School Email"
+            name="school_email"
+            type="email"
+            value={formData.school_email}
+            onChange={handleChange}
+            fullWidth
+          />
 
-      <input
-        type="text"
-        name="student_id"
-        placeholder="Student ID"
-        value={formData.student_id}
-        onChange={handleChange}
-        className="input"
-        required
-      />
+          <TextField
+            required
+            id="student_id"
+            label="Student ID"
+            name="student_id"
+            value={formData.student_id}
+            onChange={handleChange}
+            fullWidth
+          />
 
-      <input
-        type="text"
-        name="school_name"
-        placeholder="School Name"
-        value={formData.schoolName}
-        onChange={handleChange}
-        className="input"
-        required
-      />
+          <TextField
+            required
+            id="school_name"
+            label="School Name"
+            name="school_name"
+            value={formData.school_name}
+            onChange={handleChange}
+            fullWidth
+          />
 
-      <input
-        type="text"
-        name="department"
-        placeholder="College Department"
-        value={formData.department}
-        onChange={handleChange}
-        className="input"
-        required
-      />
+          <TextField
+            required
+            id="department"
+            label="Department"
+            name="department"
+            value={formData.department}
+            onChange={handleChange}
+            fullWidth
+          />
 
-      <input
-        type="text"
-        name="course_program"
-        placeholder="Course / Program"
-        value={formData.course_program}
-        onChange={handleChange}
-        className="input"
-        required
-      />
+          <TextField
+            required
+            id="course_program"
+            label="Course / Program"
+            name="course_program"
+            value={formData.course_program}
+            onChange={handleChange}
+            fullWidth
+          />
 
-      <input
-        type="text"
-        name="year_level"
-        placeholder="Year Level"
-        value={formData.year_level}
-        onChange={handleChange}
-        className="input"
-        required
-      />
+          <TextField
+            required
+            id="year_level"
+            label="Year Level"
+            name="year_level"
+            value={formData.year_level}
+            onChange={handleChange}
+            fullWidth
+          />
 
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
-        className="input"
-        required
-      />
+          <TextField
+            required
+            id="password"
+            label="Password"
+            name="password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+            fullWidth
+          />
 
-      {error && <p className="error">{error}</p>}
-      {success && <p className="success">{success}</p>}
+          {error && <Alert severity="error">{error}</Alert>}
+          {success && <Alert severity="success">{success}</Alert>}
 
-      <button type="submit" className="button" disabled={loading}>
-        {loading ? "Signing up..." : "Sign Up"}
-      </button>
-    </form>
-  </div>
-);
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            fullWidth
+            disabled={loading}
+          >
+            {loading ? "Signing up..." : "Sign Up"}
+          </Button>
+        </Box>
+      </Paper>
+    </Container>
+  );
 };
 
 export default SignUpForm;
