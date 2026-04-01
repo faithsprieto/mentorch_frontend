@@ -1,3 +1,5 @@
+import "../../styles/CommonButtonStyles.css";
+
 export default function LibraryTable({ resources }) {
 
   if (!resources || resources.length === 0) {

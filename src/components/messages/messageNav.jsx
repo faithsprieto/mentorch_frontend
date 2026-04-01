@@ -2,7 +2,6 @@ import React from "react";
 import "../../styles/pagestyles/messagesPage.css";
 
 const MessageNav = ({ tab, setTab }) => {
-
   return (
     <div className="msg-tabs">
 

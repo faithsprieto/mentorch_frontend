@@ -14,28 +14,32 @@
 .library-controls input {
   max-width: 40rem;
   width: 100%;
-  padding: 8px 35px 8px 12px; /* space for icon */
+  padding: 8px 35px 8px 12px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 14px;
 }
+
 
 .library-controls select {
   max-width: 10rem;
   width: 100%;
-  padding: 8px 35px 8px 12px; /* space for icon */
+  padding: 8px 35px 8px 12px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 14px;
 }
 
-
-/* TABLE CONTAINER */
+/* TABLE */
 .library-container {
-  overflow-x: auto;
+  color: whitesmoke;
+  max-width: 65rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 0 9rem 0 9rem;
 }
 
-/* TABLE */
 .library-table {
   width: 100%;
   border-collapse: collapse;
@@ -65,18 +69,13 @@
   font-size: 0.75rem;
 }
 
-/* DOWNLOAD BUTTON */
+/* BUTTONS */
 .download-btn {
   text-decoration: none;
   padding: 0.4rem 0.625rem;
   border-radius: 0.25rem;
   background-color: #000;
   color: white;
-}
-
-/* ACTIONS */
-.library-actions {
-  margin-top: 1.9rem;
 }
 
 .bottom-buttons {
@@ -87,7 +86,10 @@
   align-items: center;
 }
 
-/* UPLOAD MODAL OVERLAY */
+/* ========================= */
+/* 🔥 MODAL */
+/* ========================= */
+
 .upload-overlay {
   position: fixed;
   top: 0;
@@ -98,17 +100,97 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9999;
 }
 
-/* MODAL */
 .upload-modal {
   background: white;
   padding: 1.9rem;
   width: 25rem;
   border-radius: 0.5rem;
   position: relative;
+  z-index: 10000;
+  overflow: visible; /* 🔥 FIX DROPDOWN */
 }
 
+/* FORM LAYOUT FIX */
+.upload-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.upload-modal h3 {
+  color: #000;
+  margin: 0 0 1rem 0;
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* INPUTS FULL WIDTH */
+.upload-modal input{
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* INPUT STYLE */
+.upload-modal input {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* FILE INPUT FIX */
+.upload-modal input[type="file"] {
+  width: 100%;
+}
+
+/* ========================= */
+/* 🔥 DROPDOWN FIXED */
+/* ========================= */
+
+.drop-down {
+  position: relative; /* 🔥 REQUIRED */
+  width: 100%;
+}
+
+.display-box {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.drop-down-box {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 25rem;
+
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  max-height: 150px;
+  overflow-y: auto;   /* ✅ enables scroll INSIDE dropdown */
+  overflow-x: hidden; /* ✅ prevents horizontal scroll */
+
+  z-index: 99999;     /* ✅ keeps it above elements */
+}
+
+.keyword-show {
+  padding: 8px;
+  cursor: pointer;
+  color: black;
+}
+
+.keyword-show:hover {
+  background: #4338ca;
+  color: white;
+}
+
+/* CLOSE BTN */
 .close-btn {
   position: absolute;
   right: 1rem;

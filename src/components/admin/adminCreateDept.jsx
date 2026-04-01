@@ -4,35 +4,36 @@ import { postRequest } from "../../utils/api";
 import "../../styles/CommonButtonStyles.css";
 import "../../styles/CommonStyles.css";
 
-export default function AdminCreateKeyword({ onSuccess }) {
-  const [keyword, setKeyword] = useState("");
+export default function AdminCreateDept({ onSuccess }) {
+  const [department, setDepartment] = useState(""); // ✅ fixed naming
   const [loading, setLoading] = useState(false);
 
   const handleSave = async () => {
-    if (!keyword.trim()) {
-      alert("Keyword is required");
+    // ✅ FIXED TYPO
+    if (!department.trim()) {
+      alert("Department is required");
       return;
     }
 
     try {
       setLoading(true);
 
-      const res = await postRequest("/keyword/create", {
-        keyword: keyword.trim(),
+      const res = await postRequest("/department/create", {
+        department: department.trim(),
       });
 
-      alert(res?.message || "Keyword created successfully");
+      alert(res?.message || "Department created successfully");
 
-      setKeyword("");
+      setDepartment(""); // ✅ fixed setter
 
       // ✅ refresh parent list
       if (onSuccess) onSuccess();
 
     } catch (error) {
-      console.error("Error creating keyword:", error);
+      console.error("Error creating department:", error);
       alert(
         error?.response?.data?.message ||
-        "Failed to create keyword"
+        "Failed to create department"
       );
     } finally {
       setLoading(false);
@@ -40,17 +41,17 @@ export default function AdminCreateKeyword({ onSuccess }) {
   };
 
   return (
-    <div className="keyword-header">
-      <h3>Create Keyword</h3>
+    <div className="department-header">
+      <h3>Create department</h3>
 
-      <div className="create-keyword">
-        <h6>Name of keyword:</h6>
+      <div className="create-department">
+        <h6>Name of department:</h6>
 
         <input
           type="text"
-          placeholder="Enter keyword..."
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
+          placeholder="Enter department..."
+          value={department}
+          onChange={(e) => setDepartment(e.target.value)} // ✅ fixed
           disabled={loading}
         />
 

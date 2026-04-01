@@ -84,7 +84,7 @@ const Navbar = () => {
 
       {/* User Icon */}
       <div className="navbar-user">
-        <Link to="/userDashboard">
+        <Link to="/userDashboardPage">
           <Tooltip title="Profile">
             <UserOutlined className="user-icon" />
           </Tooltip>

@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { postRequest, getRequest } from "../../utils/api";
+import "../../styles/pagestyles/libraryPage.css";
 
 export default function LibraryUploadModal({ onClose, onSuccess }) {
   const [formData, setFormData] = useState({
     title: "",
-    keywords: [], // ✅ stores keyword_id
+    keywords: [],
     file: null,
   });
 
@@ -14,7 +15,7 @@ export default function LibraryUploadModal({ onClose, onSuccess }) {
 
   const dropdownRef = useRef(null);
 
-  // ✅ FETCH KEYWORDS
+  // FETCH KEYWORDS
   useEffect(() => {
     fetchKeywords();
   }, []);
@@ -24,11 +25,11 @@ export default function LibraryUploadModal({ onClose, onSuccess }) {
       const res = await getRequest("/keyword/list");
       setKeywordList(res.data);
     } catch (error) {
-      console.error("Error fetching keywords:", error);
+      console.error(error);
     }
   };
 
-  // ✅ CLOSE DROPDOWN WHEN CLICK OUTSIDE
+  // CLOSE DROPDOWN WHEN CLICK OUTSIDE
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -41,7 +42,6 @@ export default function LibraryUploadModal({ onClose, onSuccess }) {
       document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // ✅ INPUT HANDLER
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
@@ -52,7 +52,6 @@ export default function LibraryUploadModal({ onClose, onSuccess }) {
     }
   };
 
-  // ✅ TOGGLE USING keyword_id
   const toggleKeyword = (keyword_id) => {
     setFormData((prev) => {
       const exists = prev.keywords.includes(keyword_id);
@@ -66,7 +65,6 @@ export default function LibraryUploadModal({ onClose, onSuccess }) {
     });
   };
 
-  // ✅ SUBMIT
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -77,14 +75,12 @@ export default function LibraryUploadModal({ onClose, onSuccess }) {
 
     const data = new FormData();
 
-    // 🔥 GET USER ID FROM LOCAL STORAGE
     const user_id = localStorage.getItem("user");
 
     data.append("user_id", user_id);
     data.append("title", formData.title);
     data.append("file", formData.file);
 
-    // 🔥 SEND keyword_id[]
     formData.keywords.forEach((id) => {
       data.append("keyword_id[]", id);
     });
@@ -96,15 +92,14 @@ export default function LibraryUploadModal({ onClose, onSuccess }) {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      alert(res.message || "Upload request submitted!");
+      alert(res.message || "Upload submitted!");
+
+      if (onSuccess) onSuccess();
       onClose();
 
     } catch (error) {
       console.error(error);
-      alert(
-        error.response?.data?.message ||
-        "Failed to submit upload request."
-      );
+      alert("Upload failed");
     } finally {
       setLoading(false);
     }
@@ -117,10 +112,9 @@ export default function LibraryUploadModal({ onClose, onSuccess }) {
           X
         </button>
 
-        <h2>Request File Upload</h2>
+        <h3>Request File Upload</h3>
 
         <form onSubmit={handleSubmit}>
-          {/* TITLE */}
           <input
             type="text"
             name="title"
@@ -130,21 +124,11 @@ export default function LibraryUploadModal({ onClose, onSuccess }) {
             required
           />
 
-          {/* 🔥 DROPDOWN MULTI SELECT */}
-          <div
-            ref={dropdownRef}
-            style={{ position: "relative", marginBottom: "12px" }}
-          >
-            {/* DISPLAY BOX */}
+          {/* 🔥 DROPDOWN */}
+          <div className="drop-down" ref={dropdownRef}>
             <div
+              className="display-box"
               onClick={() => setOpen((prev) => !prev)}
-              style={{
-                padding: "8px",
-                border: "1px solid #ccc",
-                borderRadius: "8px",
-                cursor: "pointer",
-                background: "#fff",
-              }}
             >
               {formData.keywords.length > 0
                 ? formData.keywords
@@ -158,50 +142,23 @@ export default function LibraryUploadModal({ onClose, onSuccess }) {
                 : "Select keywords"}
             </div>
 
-            {/* DROPDOWN */}
             {open && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "105%",
-                  left: 0,
-                  width: "100%",
-                  background: "#fff",
-                  border: "1px solid #ccc",
-                  borderRadius: "8px",
-                  maxHeight: "150px",
-                  overflowY: "auto",
-                  zIndex: 9999,
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
-                }}
-              >
-                {keywordList.map((k) => {
-                  const selected = formData.keywords.includes(
-                    Number(k.keyword_id)
-                  );
-
-                  return (
-                    <div
-                      key={k.keyword_id}
-                      onClick={() =>
-                        toggleKeyword(Number(k.keyword_id))
-                      }
-                      style={{
-                        padding: "8px",
-                        cursor: "pointer",
-                        background: selected ? "#4338ca" : "#fff",
-                        color: selected ? "#fff" : "#000",
-                      }}
-                    >
-                      {k.keyword_tag}
-                    </div>
-                  );
-                })}
+              <div className="drop-down-box">
+                {keywordList.map((k) => (
+                  <div
+                    key={k.keyword_id}
+                    className="keyword-show"
+                    onClick={() =>
+                      toggleKeyword(Number(k.keyword_id))
+                    }
+                  >
+                    {k.keyword_tag}
+                  </div>
+                ))}
               </div>
             )}
           </div>
 
-          {/* FILE */}
           <input
             type="file"
             name="file"
@@ -209,9 +166,8 @@ export default function LibraryUploadModal({ onClose, onSuccess }) {
             required
           />
 
-          {/* SUBMIT */}
           <button type="submit" disabled={loading}>
-            {loading ? "Submitting..." : "Submit Request"}
+            {loading ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>

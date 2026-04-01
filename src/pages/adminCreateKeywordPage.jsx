@@ -45,16 +45,22 @@ export default function CreateKeywordPage() {
   );
 
   return (
-    <div>
-      <h3>Admin Dashboard</h3>
-      <AdminNav onNavigate={handleNavigation} />
+    <div className="admin-keywords">
+
+      <div className="admin-header">
+        <h2>Admin Dashboard</h2>
+        <AdminNav onNavigate={handleNavigation} />
+      </div>
 
       {/* ✅ CREATE COMPONENT */}
       <AdminCreateKeyword onSuccess={fetchKeywords} />
 
-      <h6>List of keywords:</h6>
+      
 
       <div className="action-area">
+        
+        <h6>List of keywords:</h6>
+      
         <input
           type="text"
           placeholder="Search by keyword..."

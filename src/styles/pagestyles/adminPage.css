@@ -20,3 +20,71 @@
   justify-content: flex-end;
   gap: 10px;
 }
+
+/*ADMIN DASHBOARD HEADERS SUBHEADS PARA UNIFORM*/
+.admin header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.admin-header h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+
+
+
+/*CREATE KEYWORDDD NGA PAGE HERE*/
+.create-keyword {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 6rem;
+}
+
+.keyword-header {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.keyword-header h3 {
+  margin: 0 0 0 6rem;
+}
+
+.create-keyword input {
+   width: 20%;
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+    border: none;
+}
+
+.create-keyword h6 {
+  margin: 0;
+}
+
+.action-area {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0 2rem 6rem;
+  gap: 1rem;
+}
+
+.action-area h6 {
+  margin: 0;
+}
+
+.action-area input {
+    width: 20%;
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+    border: none;
+}
+
+
+

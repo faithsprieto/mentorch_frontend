@@ -1,0 +1,165 @@
+/* ========================= */
+/* MAIN LAYOUT */
+/* ========================= */
+
+.user-container {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  height: calc(100vh - 8rem);
+  gap: 2rem;
+  margin: 2rem 8rem 4rem 8rem;
+}
+
+/* ========================= */
+/* LEFT SIDE NAV */
+/* ========================= */
+
+.left-content {
+  margin-top: 2rem;
+}
+
+.user-dash-tabs { 
+  width: 100%; 
+  display:grid; 
+  flex-direction: column; 
+} 
+
+.user-dash-tabs .glass-buttons { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  margin-bottom: 2rem;
+} 
+  
+  /* ICON SIZE (same as forum) */ 
+  .glass-buttons img, .side-btn svg { 
+    width: auto; 
+    height: 1.75rem; 
+    overflow-x: hidden;
+  } 
+  
+  /* BUTTON STYLE (same feel as forum-tabs) */
+  .side-btn { 
+    background: none; 
+    border: none; 
+    padding: 0.25rem 0.5rem; 
+    
+    cursor: pointer; 
+    display: inline-block; 
+  } 
+  
+  /* ACTIVE STATE */ 
+  .side-btn.active { 
+    background: rgba(255,255,255,0.15); 
+    border-radius: 0.5rem; 
+  }
+
+/* ========================= */
+/* MAIN CONTENT (ISOLATED 🔥) */
+/* ========================= */
+
+.user-container .user-main-content {
+  display: flex !important;        /* 🔥 FORCE FLEX */
+  flex-direction: row !important;  /* 🔥 LEFT + RIGHT */
+
+  gap: 3rem;
+  align-items: flex-start;
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(0.625rem);
+  border-radius: 1.25rem;
+
+  padding: 1.5rem 1.25rem;
+
+  width: 90%;
+  max-width: 50rem;
+}
+
+/* ========================= */
+/* LEFT COLUMN */
+/* ========================= */
+
+.user-container .user-info {
+  width: 220px;
+  flex-shrink: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ========================= */
+/* RIGHT COLUMN */
+/* ========================= */
+
+.user-container .user-profile-boxes {
+  flex: 1;
+  width: 100%;
+  max-width: 28rem;
+  display: flex !important;
+  flex-direction: column !important; /* 🔥 STACK HERE */
+  gap: 1rem;
+}
+
+.user-container .user-profile-boxes h3 {
+  margin: 0;
+}
+
+/* ========================= */
+/* ABOUT */
+/* ========================= */
+
+.about-user input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.6rem;
+  border: none;
+}
+
+/* ========================= */
+/* STRENGTH + WEAKNESS */
+/* ========================= */
+
+.user-strength-weakness {
+  display: flex;
+  gap: 2rem;
+}
+
+.user-strength,
+.user-weakness {
+  flex: 1;
+}
+
+.user-strength input,
+.user-weakness input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.6rem;
+  border: none;
+}
+
+/* ========================= */
+/* GOALS */
+/* ========================= */
+
+.user-goals {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.user-goals input {
+  width: 100%;
+ 
+  padding: 0.5rem;
+  border-radius: 0.6rem;
+  border: none;
+}
+
+/* ========================= */
+/* HEADINGS */
+/* ========================= */
+
+h4 {
+  margin-bottom: 0.5rem;
+}
