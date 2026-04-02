@@ -5,8 +5,9 @@ import "../../styles/CommonButtonStyles.css";
 import "../../styles/CommonStyles.css";
 
 export default function DeptCard({ item, onRefresh }) {
+
   const [isEditing, setIsEditing] = useState(false);
-  const [value, setValue] = useState(item.department_tag);
+  const [value, setValue] = useState(item.department_title || ""); // ✅ FIXED
   const [loading, setLoading] = useState(false);
 
   // 🗑 DELETE
@@ -18,7 +19,7 @@ export default function DeptCard({ item, onRefresh }) {
 
       await deleteRequest(`/department/delete/${item.department_id}`);
 
-      alert("department deleted");
+      alert("Department deleted");
 
       if (onRefresh) onRefresh();
 
@@ -33,7 +34,7 @@ export default function DeptCard({ item, onRefresh }) {
   // ✏️ EDIT
   const handleEdit = async () => {
     if (!value.trim()) {
-      alert("department cannot be empty");
+      alert("Department cannot be empty");
       return;
     }
 
@@ -42,10 +43,10 @@ export default function DeptCard({ item, onRefresh }) {
 
       await postRequest("/department/update", {
         department_id: item.department_id,
-        department: value.trim(),
+        department_title: value.trim(), // ✅ FIXED FIELD
       });
 
-      alert("department updated");
+      alert("Department updated");
 
       setIsEditing(false);
 
@@ -60,8 +61,11 @@ export default function DeptCard({ item, onRefresh }) {
   };
 
   return (
-    <div className="department-card" style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-      
+    <div
+      className="department-card"
+      style={{ display: "flex", gap: "10px", alignItems: "center" }}
+    >
+
       {/* TEXT / INPUT */}
       {isEditing ? (
         <input
@@ -69,12 +73,18 @@ export default function DeptCard({ item, onRefresh }) {
           onChange={(e) => setValue(e.target.value)}
         />
       ) : (
-        <span>{item.department_tag}</span>
+        <span>{item.department_title}</span> // ✅ FIXED
       )}
 
       {/* BUTTONS */}
-      <div style={{ marginLeft: "auto", display: "flex", gap: "8px" }}>
-        
+      <div
+        style={{
+          marginLeft: "auto",
+          display: "flex",
+          gap: "8px"
+        }}
+      >
+
         {isEditing ? (
           <>
             <button

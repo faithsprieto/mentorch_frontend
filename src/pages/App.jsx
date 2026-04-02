@@ -26,6 +26,7 @@ import ForumBookmarksPage from "./forumBookmarksPage.jsx";
 
 import CreateKeywordPage from "./adminCreateKeywordPage.jsx";
 import CreateDeptPage from "./adminCreateDeptPage.jsx";
+import AdminUsersPage from "./adminUsersPage.jsx";
 
 import UserDashboardPage from "./userDashboardPage.jsx";
 
@@ -75,6 +76,8 @@ function App() {
           {/* ADMIN dashboard */}
           <Route path="/adminCreateKeywordPage" element={<CreateKeywordPage />} />
           <Route path="/adminCreateDeptPage" element={<CreateDeptPage />} />
+          <Route path="/adminUsersPage" element={<AdminUsersPage />} />
+
 
           {/* USER dashboard */}
           <Route path="/userDashboardPage" element={<UserDashboardPage />} />

@@ -5,7 +5,7 @@ import { getRequest } from "../utils/api";
 
 import AdminNav from "../components/admin/adminNav";
 import AdminCreateDept from "../components/admin/adminCreateDept";
-import DepartmentCard from "../components/admin/deptCard"; // ✅ FIXED NAME
+import DeptCard from "../components/admin/deptCard"; // ✅ correct
 
 import "../styles/pagestyles/adminPage.css";
 import "../styles/CommonButtonStyles.css";
@@ -14,13 +14,13 @@ import "../styles/CommonStyles.css";
 export default function CreateDeptPage() {
 
   const [searchInput, setSearchInput] = useState("");
-  const [departments, setDepartments] = useState([]); // ✅ camelCase fix
+  const [departments, setDepartments] = useState([]);
 
   const handleNavigation = (section) => {
     console.log("Go to:", section);
   };
 
-  // ✅ FETCH departments (FIXED FUNCTION NAME + SYNTAX)
+  // FETCH
   const fetchDepartments = async () => {
     try {
       const res = await getRequest("/department/list");
@@ -30,14 +30,14 @@ export default function CreateDeptPage() {
     }
   };
 
-  // ✅ LOAD ON MOUNT
+  // LOAD
   useEffect(() => {
     fetchDepartments();
   }, []);
 
-  // ✅ FILTER
+  // FILTER (✅ FIXED FIELD)
   const filteredDepartments = departments.filter((item) =>
-    item.department_tag
+    item.department_title
       ?.toLowerCase()
       .includes(searchInput.toLowerCase())
   );
@@ -56,7 +56,6 @@ export default function CreateDeptPage() {
       <div className="action-area">
         <h6>List of departments:</h6>
 
-        {/* 🔥 FIXED SEARCH WITH ICON */}
         <div className="search-container">
           <input
             type="text"
@@ -74,7 +73,7 @@ export default function CreateDeptPage() {
           <p>No departments found</p>
         ) : (
           filteredDepartments.map((item) => (
-            <DepartmentCard
+            <DeptCard
               key={item.department_id}
               item={item}
               onRefresh={fetchDepartments}
